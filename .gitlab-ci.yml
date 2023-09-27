@@ -22,8 +22,8 @@ deploy_function:
       --trigger-http \
       --allow-unauthenticated \
       --set-env-vars SLACK_API_TOKEN="$SLACK_API_TOKEN",GITLAB_API_TOKEN="$GITLAB_API_TOKEN" \
-      --project "$PROJECT_ID" \
-      --region "$REGION"
+      --project="$PROJECT_ID" \
+      --region="$REGION"
   only:
     - main # Deploy only from the master branch or change it as needed
 
