@@ -1,0 +1,26 @@
+# ...
+
+variables:
+  # Define your Slack and GitLab tokens as secret variables in GitLab CI/CD settings.
+  SLACK_API_TOKEN: $SLACK_API_TOKEN
+  GITLAB_API_TOKEN: $GITLAB_API_TOKEN
+
+deploy_function:
+  stage: deploy
+  image: google/cloud-sdk:latest
+  script:
+    # Authenticate with Google Cloud using a service account key.
+    - echo $GCLOUD_SERVICE_KEY_JSON > /tmp/gcloud-service-key.json
+    - gcloud auth activate-service-account --key-file /tmp/gcloud-service-key.json
+    - gcloud config set project your-project-id
+
+    # Deploy the function with environment variables.
+    - gcloud functions deploy your-function-name \
+        --runtime python38 \
+        --trigger-http \
+        --allow-unauthenticated \
+        --set-env-vars SLACK_API_TOKEN=$SLACK_API_TOKEN,GITLAB_API_TOKEN=$GITLAB_API_TOKEN
+  only:
+    - master # Deploy only from the master branch or change it as needed
+
+# ...

@@ -1,0 +1,2 @@
+python-gitlab==2.15.0
+slack-sdk==3.10.0
