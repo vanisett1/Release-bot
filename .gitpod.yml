@@ -1,0 +1,16 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Install Dependencies
+    command: |
+      pip install -r requirements.txt
+
+  - name: Start Google Cloud SDK
+    command: |
+      gcloud auth activate-service-account --key-file /workspace/service-account-key.json
+      gcloud config set project your-project-id
+
+ports:
+  - port: 8080
+    onOpen: ignore
