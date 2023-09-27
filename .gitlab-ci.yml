@@ -17,14 +17,13 @@ deploy_function:
     - gcloud config set project your-project-id
 
     # Deploy the function with environment variables.
-    gcloud functions deploy Slyncops \
-    --runtime python38 \
-    --trigger-http \
-    --allow-unauthenticated \
-    --set-env-vars SLACK_API_TOKEN="${SLACK_API_TOKEN}",GITLAB_API_TOKEN="${GITLAB_API_TOKEN}" \
-    --project "${PROJECT_ID}" \
-    --region "${REGION}"
-
+    - gcloud functions deploy Slyncops \
+      --runtime python38 \
+      --trigger-http \
+      --allow-unauthenticated \
+      --set-env-vars SLACK_API_TOKEN="$SLACK_API_TOKEN",GITLAB_API_TOKEN="$GITLAB_API_TOKEN" \
+      --project "$PROJECT_ID" \
+      --region "$REGION"
   only:
     - main # Deploy only from the master branch or change it as needed
 
