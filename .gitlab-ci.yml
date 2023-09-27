@@ -21,6 +21,7 @@ deploy_function:
         --allow-unauthenticated \
         --set-env-vars SLACK_API_TOKEN=$SLACK_API_TOKEN,GITLAB_API_TOKEN=$GITLAB_API_TOKEN
   only:
-    - master # Deploy only from the master branch or change it as needed
+    - main # Deploy only from the master branch or change it as needed
+
 
 # ...
